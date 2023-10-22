@@ -51,7 +51,7 @@ class AlienInvasion:
             # Watch for keyboard and mouse events.
             self._check_events()
 
-            if self.game_active
+            if self.game_active:
                 self.ship.update()
                 self._update_bullets()
                 self._update_aliens()
