@@ -9,6 +9,8 @@ class GameStats:
 
         self.high_score = 0
 
+        self.mod_count = 0
+
     def reset_stats(self):
         """ Init stats that can change during the game """
 

@@ -14,16 +14,20 @@ class Scoreboard:
         self.screen_rect = self.screen.get_rect()
         self.settings = game.settings
         self.stats = game.stats
+        self.status_msg = "Press 'P' to Play"
+        self.status_msg_x = 0
 
         # Font settings for display of score info
         self.text_color = (0, 135, 0)
-        self.font = pygame.font.SysFont(None, 32)
+        self.font = pygame.font.SysFont(self.settings.font, 32)
 
         # Prepare initial score image
         self.prep_score()
         self.prep_high_score()
         self.prep_level()
         self.prep_lives()
+        self.status_msg_x = self.lives.sprites()[2].rect.right - 15
+        self.prep_status_msg(self.status_msg)
 
     def prep_score(self):
         """ Turn score into a rendered image """
@@ -68,6 +72,13 @@ class Scoreboard:
             ship.rect.y = 15
             self.lives.add(ship)
 
+    def prep_status_msg(self, status_msg, color=(0, 255, 0)):
+        """ Display a status message based on game action """
+
+        self.status_msg_image = self.font.render(status_msg, True, color, self.settings.bg_color)
+        self.status_msg_rect = self.status_msg_image.get_rect()
+        self.status_msg_rect.centerx = (self.high_score_rect.left + self.status_msg_x) / 2
+        self.status_msg_rect.top = self.score_rect.top
 
     def show_score(self):
         """ Draw score to the screen """
@@ -75,6 +86,7 @@ class Scoreboard:
         self.screen.blit(self.score_image, self.score_rect)
         self.screen.blit(self.high_score_image, self.high_score_rect)
         self.screen.blit(self.level_image, self.level_rect)
+        self.screen.blit(self.status_msg_image, self.status_msg_rect)
         self.lives.draw(self.screen)
 
     def check_high_score(self):

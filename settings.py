@@ -9,6 +9,9 @@ class Settings:
         self.screen_height = 800
         self.bg_color = (0, 0, 0)
 
+        # Font setting
+        self.font = 'classicconsole'
+
         # Star background settings
         self.star_density = 200
 
@@ -16,7 +19,7 @@ class Settings:
         self.lives = 3
 
         # Bullet settings
-        self.bullet_width = 1000
+        self.bullet_width = 4
         self.bullet_height = 24
         self.bullet_color = (200, 0, 0)
         self.bullets_allowed = 10
@@ -25,7 +28,7 @@ class Settings:
         self.fleet_drop_speed = 10
 
         # Rate of speed change per level
-        self.speedup_rate = 1.1
+        self.speedup_rate = 1.3
 
         # Rate of increase for scores per level
         self.score_rate = 1.5
@@ -42,9 +45,13 @@ class Settings:
         self.bullet_speed = 3.0
 
         # Alien dynamic settings
-        self.alien_speed = 10.0
+        self.alien_speed = 1.0
         self.fleet_direction = 1  # 1 = right, -1 = left
         self.alien_points = 50
+
+        # Modifier settings
+        # Modifiers appear less often in harder levels
+        self.modifier_rate = 500
 
     def increase_speed(self):
         """ Increase dynamic settings """

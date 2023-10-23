@@ -15,13 +15,14 @@ class Ship(Sprite):
         self.screen_rect = game.screen.get_rect()
 
         # Load ship image, get its rect
-        self.image = pygame.image.load('img/ship.bmp')
+        self.image = pygame.image.load('img/ship.bmp').convert_alpha()
         self.rect = self.image.get_rect()
 
         # Start ship at bottom center of screen
         # Then store a float for it's x (horizontal) position
         self.rect.midbottom = self.screen_rect.midbottom
         self.x = float(self.rect.x)
+        self.rect.y -= 10
 
         # Movement flag, ship is not moving to start
         self.moving_right = False
@@ -47,3 +48,4 @@ class Ship(Sprite):
 
         self.rect.midbottom = self.screen_rect.midbottom
         self.x = float(self.rect.x)
+        self.rect.y -= 10
