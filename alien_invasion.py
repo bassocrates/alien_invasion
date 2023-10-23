@@ -138,6 +138,8 @@ class AlienInvasion:
         self.settings.init_dynamic_settings()
         self.stats.reset_stats()
         self.sb.prep_score()
+        self.sb.prep_level()
+        self.sb.prep_lives()
         self.game_active = True
 
         # Hide the mouse
@@ -181,12 +183,14 @@ class AlienInvasion:
             for aliens in collisions.values():
                 self.stats.score += self.settings.alien_points * len(aliens)
             self.sb.prep_score()
-            self.sb.check_high_scre()
+            self.sb.check_high_score()
 
         if not self.aliens:
             self.bullets.empty()
             self._create_fleet()
             self.settings.increase_speed()
+            self.stats.level += 1
+            self.sb.prep_level()
 
     def _update_aliens(self):
         """ Update positions of all aliens in fleet """
@@ -255,9 +259,10 @@ class AlienInvasion:
     def _ship_hit(self):
         """ Respond to ship being hit ny an alien """
 
-        if self.stats.ships_left > 0:
+        if self.stats.lives_left > 0:
             # Lose a life
-            self.stats.ships_left -= 1
+            self.stats.lives_left -= 1
+            self.sb.prep_lives()
 
             # Clear any aliens and bullets from the screen
             self.aliens.empty()

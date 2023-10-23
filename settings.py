@@ -13,10 +13,10 @@ class Settings:
         self.star_density = 200
 
         # Ship settings
-        self.ship_limit = 3
+        self.lives = 3
 
         # Bullet settings
-        self.bullet_width = 400
+        self.bullet_width = 1000
         self.bullet_height = 24
         self.bullet_color = (200, 0, 0)
         self.bullets_allowed = 10
@@ -42,7 +42,7 @@ class Settings:
         self.bullet_speed = 3.0
 
         # Alien dynamic settings
-        self.alien_speed = 1.0
+        self.alien_speed = 10.0
         self.fleet_direction = 1  # 1 = right, -1 = left
         self.alien_points = 50
 
